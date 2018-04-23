@@ -110,19 +110,18 @@ volumes:
 ```
 
 ##### Catatan No. 3
-1. Load Balancer - Menggunakan image container dari Docker Hub -> **nginx:stable-alpine**
+1. Load Balancer - Image Container dari Docker Hub -> **nginx:stable-alpine**
 2. Konfigurasi **nginx.conf** akan disimpan pada **/etc/nginx/conf.d/default.conf:ro** di container
 3. Konfigurasi untuk **nginx.conf**
 ```
     server {
-    listen  80 default_server;
-    location / {
-        proxy_pass http://worker:80;
+        listen  80 default_server;
+        location / {
+            proxy_pass http://worker:80;
+        }
     }
-}
 ```
 
 ##### Catatan No. 4
-1. db - Menggunakan image container dari Docker Hub -> **mysql:5.7**
-2. db - Volume untuk service db, mengunakan konfigurasi **./reservasi:/docker-entrypoint-initdb.d**, untuk membaca dan meng-import seluruh isi dari direktori yang memiliki format .sql dan menyimpannya pada **dbdata** yang ada pada direktori **/var/lib/mysql**.
-3. **restart: always** ditujukan untuk membuat volume storage mysql persisten
+1. db - Image Container dari Docker Hub -> **mysql:5.7**
+2. db - Volume untuk service db, mengunakan konfigurasi **./reservasi:/docker-entrypoint-initdb.d**, untuk mengkonfigurasi Database untuk sistem Reservasi, dengan membaca dan meng-import seluruh isi dari direktori yang memiliki format .sql dan menyimpannya pada **dbdata** yang ada pada direktori **/var/lib/mysql**.
