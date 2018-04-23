@@ -39,7 +39,7 @@
     # Port 80
     EXPOSE 80
 ```
-- Step 4 - Mengunduh Web File **Reservasi** dari [sini](https://cloud.fathoniadi.my.id/reservasi.zip)
+- Step 4 - Mengunduh Web File **Reservasi** dari [sini](https://cloud.fathoniadi.my.id/reservasi.zip) dan menaruhnya di folder www
 - Step 5 - Buat image pada docker
 ```
     docker build -t tugas-docker ./
