@@ -334,4 +334,4 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
     ```
     
 ## Screenshot
-![Main](screenshot/main.png "Main")
+![Main](screenshot/main.PNG "Main")
