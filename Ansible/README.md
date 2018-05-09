@@ -5,7 +5,7 @@
 ##### 1. Reinhart Caesar - 05111540000132   
 ##### 2. Joshua Resamuel - 05111540000172
 # 1. Membuat 3 Virtual Machine
-> 2 Virtual Machine Ubuntu 14.04 sebagai Worker dan 1 Virtual Machine Debian 9 sebagai Database Server. Aplikasi virtualisasi yang digunakan adalah **VirtualBox**.
+2 Virtual Machine Ubuntu 14.04 sebagai **Worker** dan 1 Virtual Machine Debian 9 sebagai **Database Server**. Aplikasi virtualisasi yang digunakan adalah **VirtualBox**.
 
 # 2. Konfigurasi Virtual Machine
 > Install SSH pada VM :
@@ -20,7 +20,7 @@
       sudo apt install ansible
       sudo apt-get install sshpass
    ```
-2. Membuat folder **simple-playbook**.
+2. Membuat folder **simple-playbook**
 
     ```
     mkdir simple-playbook
@@ -30,7 +30,7 @@
     ```
     nano hosts
     ```
-    isi:
+ > isi:
 
     ```
     worker1 ansible_host=192.168.20.129 ansible_ssh_user=vm ansible_become_pass=vm
@@ -42,9 +42,9 @@
     ansible -i ./hosts -m ping all -k
     ```
     Keterangan:
-    * **-i** : declare Ansible Inventory.
-    * **-m** : declare module command (command **ping**).
-    * **all** : penanda ansible dijalankan di host mana. Parameter **all** dapat diganti dengan nama host.
+    * **-i** : Deklarasi Ansible Inventory.
+    * **-m** : Deklarasi module command (command **ping**).
+    * **all** : Penanda host yang menjalankan ansible. Parameter **all** dapat diganti dengan nama host.
     * **-k** : menanyakan password login ssh.
 
 # 4. Grouping Host
@@ -63,16 +63,15 @@ worker2 ansible_host=192.168.20.130 ansible_ssh_user=vm ansible_become_pass=vm
 
 ## 5. Install Laravel 5.6
 
-Software yang digunakan untuk menjalankan Laravel 5.6:
-
-    * Nginx
-    * PHP 7.2
-    * Composer
-    * Git
+> Software yang digunakan untuk menjalankan Laravel 5.6:
+* Nginx
+* PHP 7.2
+* Composer
+* Git
 
 Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
 
-1. Membuat playbook **laravel.yml**.
+1. Membuat playbook ```laravel.yml```.
 
     ```
     nano laravel.yml
@@ -143,15 +142,11 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
             name: php7.2-fpm
             state: restarted
     ```
-    Keterangan:
-    
-    * **Zip** dan **unzip** digunakan untuk mempercepat proses instalasi Composer.
-    * ```Handlers``` digunakan untuk mendefinisikan task yang dipanggil di modul ```notify```.
 
 ## 6. Git Clone - Aplikasi Laravel
 
-* Membuka playbook```laravel.yml```
-* Menambahkan isi Script:
+* Membuka playbook ```laravel.yml```
+* Isi Script:
 
 ```yml
     # Git Clone
@@ -174,7 +169,8 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
 
 ## 7. Instalasi Composer dan Konfigurasi Laravel Environment
 
-1. Membuka playbook```laravel.yml``` dan menambahkan isi Script:
+1. Membuka playbook```laravel.yml``` 
+2. Isi Script:
 
     ```yml
         - name: Download Composer
@@ -254,14 +250,14 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
           command: chmod -R 777 "/var/www/laravel/storage"
     ```
     
-2. Membuat file ```composer.sh``` dalam folder ```script```.
+3. Membuat file ```composer.sh``` dalam folder ```script```.
 
     ```bash
     mkdir script
     cd script/
     nano composer.sh
     ```
-* isi script:
+4. Isi script:
     
     ```
     #!/bin/sh
@@ -292,7 +288,7 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
     cd nginx/
     nano nginx.conf
     ```
-    * isi script:
+2. Isi script:
 
     ```
     server {
@@ -323,7 +319,8 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
     }
     ```
 
-2. Membuka playbook```laravel.yml``` dan mengisikan script:
+3. Membuka playbook```laravel.yml``` 
+4. Isi script:
 
     ```yml
         - name: Konfigurasi Nginx
