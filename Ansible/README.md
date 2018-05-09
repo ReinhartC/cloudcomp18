@@ -332,3 +332,6 @@ Software akan diinstall pada hosts **worker** menggunakan file **laravel.yml**.
             - Restart nginx
             - Restart PHP-fpm
     ```
+    
+## Screenshot
+![Main](screenshot/main.png "Main")
